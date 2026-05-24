@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Business Card</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      background:#050816;
+      overflow-x:hidden;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      position:relative;
+    }
+
+    /* Animated Background */
+
+    body::before{
+      content:'';
+      position:absolute;
+      width:600px;
+      height:600px;
+      background:linear-gradient(45deg,#00f0ff,#8f00ff);
+      filter:blur(180px);
+      opacity:0.35;
+      top:-150px;
+      left:-150px;
+      animation:move1 8s infinite alternate;
+    }
+
+    body::after{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:linear-gradient(45deg,#ff00c8,#00ffcc);
+      filter:blur(180px);
+      opacity:0.25;
+      bottom:-150px;
+      right:-150px;
+      animation:move2 10s infinite alternate;
+    }
+
+    @keyframes move1{
+      from{transform:translate(0,0);}
+      to{transform:translate(80px,60px);}
+    }
+
+    @keyframes move2{
+      from{transform:translate(0,0);}
+      to{transform:translate(-60px,-80px);}
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:430px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:28px;
+      padding:30px 25px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.5);
+      text-align:center;
+      transition:0.4s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 20px 50px rgba(0,255,255,0.25);
+    }
+
+    .profile-img{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid rgba(255,255,255,0.25);
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:28px;
+      margin-bottom:5px;
+      font-weight:600;
+    }
+
+    .designation{
+      color:#00f0ff;
+      margin-bottom:25px;
+      font-size:15px;
+    }
+
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+      margin-bottom:25px;
+    }
+
+    .info a{
+      text-decoration:none;
+      color:white;
+      background:rgba(255,255,255,0.08);
+      padding:14px 18px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      transition:0.3s ease;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .info a:hover{
+      background:rgba(0,240,255,0.12);
+      transform:translateX(5px);
+    }
+
+    .info i{
+      font-size:18px;
+      width:25px;
+      color:#00f0ff;
+    }
+
+    .socials{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      margin:25px 0;
+    }
+
+    .socials a{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-decoration:none;
+      color:white;
+      font-size:20px;
+      background:rgba(255,255,255,0.08);
+      transition:0.3s ease;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .socials a:hover{
+      transform:translateY(-5px) scale(1.08);
+      background:#00f0ff;
+      color:#050816;
+      box-shadow:0 0 20px #00f0ff;
+    }
+
+    .btn{
+      display:inline-block;
+      width:100%;
+      padding:15px;
+      border-radius:18px;
+      text-decoration:none;
+      font-weight:600;
+      color:#050816;
+      background:#00f0ff;
+      transition:0.3s ease;
+      margin-top:10px;
+      box-shadow:0 0 20px rgba(0,240,255,0.4);
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+      box-shadow:0 0 30px rgba(0,240,255,0.7);
+    }
+
+    .footer{
+      margin-top:18px;
+      font-size:12px;
+      opacity:0.6;
+    }
+
+    @media(max-width:500px){
+      .card{
+        padding:25px 18px;
+      }
+
+      h1{
+        font-size:24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <!-- Profile Image -->
+      <img src="/profile.jpg"
+           alt="Profile"
+           class="profile-img">
+
+      <!-- Name -->
+      <h1>Md Monirul Islam</h1>
+      <p class="designation">Cyber Security Specialist</p>
+
+      <!-- Contact Info -->
+      <div class="info">
+
+        <a href="tel:+447448014986">
+          <i class="fa-solid fa-phone"></i>
+          +44 7448 014986
+        </a>
+
+        <a href="mailto:md.islam22@whitbread.com">
+          <i class="fa-solid fa-envelope"></i>
+          md.islam22@whitbread.com
+        </a>
+
+        <a href="https://wa.me/447448014986" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+          WhatsApp Chat
+        </a>
+
+        <a href="https://maps.google.com/?q=London" target="_blank">
+          <i class="fa-solid fa-location-dot"></i>
+          London, United Kingdom
+        </a>
+
+      </div>
+
+      <!-- Social Media -->
+      <div class="socials">
+
+        <a href="https://linkedin.com/in/moniruldipu" target="_blank">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+
+        <a href="https://moniruldipu.github.io/moniruldipu/" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://facebook.com/cse.dipu" target="_blank">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://instagram.com/monirul.dipu" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+      </div>
+
+      <!-- Save Contact Button -->
+      <a class="btn" href="contact.vcf" download>
+        <i class="fa-solid fa-download"></i>
+        Save Contact
+      </a>
+
+      <div class="footer">
+        All Rights Reserved Engr Dipu • 2026
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
