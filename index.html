@@ -23,7 +23,8 @@
     body{
       font-family:'Poppins',sans-serif;
       min-height:100vh;
-      background:#050816;
+      background:
+        radial-gradient(circle at top, #0f1738 0%, #050816 40%, #02030a 100%);
       overflow-x:hidden;
       color:white;
       display:flex;
@@ -38,27 +39,51 @@
     body::before{
       content:'';
       position:absolute;
-      width:600px;
-      height:600px;
-      background:linear-gradient(45deg,#00f0ff,#8f00ff);
+      width:700px;
+      height:700px;
+      background:
+        radial-gradient(circle, rgba(0,240,255,0.30), transparent 35%),
+        radial-gradient(circle at 30% 30%, rgba(143,0,255,0.28), transparent 30%),
+        linear-gradient(45deg,#00f0ff,#8f00ff);
       filter:blur(180px);
       opacity:0.35;
-      top:-150px;
-      left:-150px;
+      top:-180px;
+      left:-180px;
       animation:move1 8s infinite alternate;
     }
 
     body::after{
       content:'';
       position:absolute;
-      width:500px;
-      height:500px;
-      background:linear-gradient(45deg,#ff00c8,#00ffcc);
+      width:600px;
+      height:600px;
+      background:
+        radial-gradient(circle, rgba(0,255,204,0.25), transparent 35%),
+        radial-gradient(circle at 70% 40%, rgba(255,0,200,0.22), transparent 28%),
+        linear-gradient(45deg,#ff00c8,#00ffcc);
       filter:blur(180px);
       opacity:0.25;
-      bottom:-150px;
-      right:-150px;
+      bottom:-180px;
+      right:-180px;
       animation:move2 10s infinite alternate;
+    }
+
+    body::selection{
+      background:rgba(0,255,170,0.18);
+      color:#fff;
+    }
+
+    body .grid{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+      opacity:0.35;
+      z-index:0;
+      pointer-events:none;
     }
 
     @keyframes move1{
@@ -69,6 +94,54 @@
     @keyframes move2{
       from{transform:translate(0,0);}
       to{transform:translate(-60px,-80px);}
+    }
+
+    .code-line{
+      position:fixed;
+      top:0;
+      left:0;
+      width:180px;
+      padding:8px 10px;
+      border:1px solid rgba(0, 255, 170, 0.18);
+      border-radius:10px;
+      background:rgba(7, 16, 30, 0.45);
+      color:#7cffb2;
+      font-family:Consolas, 'Courier New', monospace;
+      font-size:11px;
+      line-height:1.3;
+      opacity:0.55;
+      pointer-events:none;
+      z-index:1;
+      box-shadow:0 0 18px rgba(0, 255, 170, 0.14);
+      animation:scanLine 14s linear infinite;
+      overflow:hidden;
+    }
+
+    .code-line::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(0,255,170,0.08), transparent);
+      transform:translateX(-100%);
+      animation:glow 2.2s linear infinite;
+    }
+
+    .code-1{ top:8%; left:6%; animation-duration:16s; }
+    .code-2{ top:26%; left:18%; animation-duration:12s; animation-delay:-4s; }
+    .code-3{ top:16%; right:10%; left:auto; animation-duration:14s; animation-delay:-6s; }
+    .code-4{ top:42%; right:16%; left:auto; animation-duration:11s; animation-delay:-2s; }
+    .code-5{ bottom:14%; left:14%; animation-duration:13s; animation-delay:-5s; }
+
+    @keyframes scanLine{
+      0%{transform:translate3d(0,0,0); opacity:0.2;}
+      12%{opacity:0.7;}
+      50%{transform:translate3d(30px,-12px,0);}
+      75%{transform:translate3d(60px,10px,0);}
+      100%{transform:translate3d(110px,0,0); opacity:0.15;}
+    }
+
+    @keyframes glow{
+      to{transform:translateX(100%);}
     }
 
     .container{
@@ -212,6 +285,12 @@
   </style>
 </head>
 <body>
+  <div class="grid"></div>
+  <span class="code-line code-1">root@kali:~# nmap -sV 10.0.0.1</span>
+  <span class="code-line code-2">scan[+] exploit chain ready</span>
+  <span class="code-line code-3">echo "access granted" &gt;&gt; logs.txt</span>
+  <span class="code-line code-4">python3 payload.py --stealth</span>
+  <span class="code-line code-5">sudo ./decrypt --trace --silent</span>
 
   <div class="container">
 
